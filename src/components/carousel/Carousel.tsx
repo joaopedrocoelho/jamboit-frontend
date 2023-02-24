@@ -15,35 +15,30 @@ interface Props {
 const Carousel: FC<Props> = ({ context }) => {
   const { slides, activeSlide } = useContext(context);
   const [translate, setTranslate] = useState(0)
-
   const containerRef = useRef<HTMLDivElement>(null);
+  const slideRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    if (containerRef.current) {
-      const containerWidth = containerRef.current.offsetWidth;
-      const slideWidth = containerRef.current.querySelector(".slide")?.clientWidth || 0;
-      const gap = parseInt(getComputedStyle(containerRef.current).getPropertyValue("gap")) || 0;
-      const centerIndex = Math.floor(slides.length / 2);
-      const translateX = (slideWidth + gap) * (activeSlide - centerIndex);
-      //log all variables one by one
-        console.log("containerWidth", containerWidth);
-        console.log("slideWidth", slideWidth);
-        console.log("gap", gap);
-        console.log("centerIndex", centerIndex);
-        console.log("translateX", translateX);
-        setTranslate(translateX);
+    if (containerRef.current && slideRefs.current.length > 0) {
+      console.log('scroll')
+      containerRef.current.scrollTo(-200,0);
+      //console all variables one by one 
+  
     }
   }, [activeSlide, slides]);
 
   return (
     <div className="flex flex-col items-center w-3/5">
-      <div className="w-full overflow-hidden">
-        <div className="flex gap-10 w-screen mb-8" ref={containerRef}
-        style={{
-            'transform': `translateX(${translate}px)`
-        }}>
+      <div className="w-full overflow-x-scroll overflow-y-hidden carousel-container">
+        <div className="flex gap-10 w-screen mb-8" ref={containerRef}>
           {slides.map((slide, index) => (
-            <CarouselSlide content={slide.data} isActive={activeSlide === index} key={`slide-${index}`}  />
+            <CarouselSlide 
+            ref={(el) => {if(el) {
+              return slideRefs.current[index] = el
+            } }}
+            content={slide.data} 
+            isActive={activeSlide === index} 
+            key={`slide-${index}`}  />
           ))}
         </div>
       </div>

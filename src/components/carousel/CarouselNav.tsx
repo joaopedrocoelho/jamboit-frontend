@@ -19,7 +19,7 @@ const CarouselNav: FC<Props> = ({ context }) => {
 
       }}
         className={`rounded-full w-20 h-20 ${
-          isLeftEnabled ? "bg-primary-600 w-24" : "bg-zinc-300"
+          isLeftEnabled ? "bg-primary-600" : "bg-zinc-300"
         }`}
       >
         &#9664;
@@ -30,7 +30,7 @@ const CarouselNav: FC<Props> = ({ context }) => {
       }}
         className={`rounded-full w-20 h-20 ${
           isRightEnabled
-            ? "bg-primary-600 w-24"
+            ? "bg-primary-600"
             : "bg-zinc-300"
         }`}
       >

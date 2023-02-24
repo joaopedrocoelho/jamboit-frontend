@@ -3,3 +3,9 @@
 @tailwind utilities;
 
 
+.carousel-container {
+    scrollbar-width: none;
+}
+.carousel-container::-webkit-scrollbar{
+    display: none;
+  }

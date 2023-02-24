@@ -4,7 +4,7 @@ import { TutorialCarouselContext } from "./TutorialCarouselContext";
 
 const TutorialCarousel = () => {
   const [activeSlide, setActiveSlide] = useState(0);
-  const slides = Array.from({ length: 8 }, (_, index) => ({
+  const slides = Array.from({ length: 6 }, (_, index) => ({
     data: `Slide ${index + 1}`,
   }));
 
