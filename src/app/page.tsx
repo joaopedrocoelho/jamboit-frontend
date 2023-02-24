@@ -1,10 +1,9 @@
 'use client'
-import Nav from "./login/Nav";
 import { useEffect } from "react";
 import { useAuthenticateQuery } from "@/store";
-import BigButton from "@/components/BigButton";
-import CarouselPagination from "@/components/carousel/CarouselPagination";
-import Carousel from "@/components/carousel/Carousel";
+import { TutorialCarouselContext } from "./login/TutorialCarouselContext";
+import TutorialCarousel from "./login/TutorialCarousel";
+
 
 
 
@@ -29,7 +28,7 @@ export default function Home() {
 
   return (
   <>
-  <Carousel />
+  <TutorialCarousel />
   </>)
 }
 

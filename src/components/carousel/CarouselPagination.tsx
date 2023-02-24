@@ -1,16 +1,23 @@
-import React, { FC } from 'react'
+import React, { FC, useContext, Context } from 'react'
+import { CarouselContextValues } from './Carousel';
 
 interface Props {
-    numberOfSlides: number;
-    activeSlide: number;
+    context:Context<CarouselContextValues>
 }
 
-const CarouselPagination:FC<Props> = ({numberOfSlides, activeSlide}) => {
-    const paginationItems = Array.from({ length: numberOfSlides }, (_, index) => (
-        <div
+const CarouselPagination:FC<Props> = ({context}) => {
+    const { slides, activeSlide, setActiveSlide} = useContext(context);
+   
+
+
+
+    const paginationItems = Array.from({ length: slides.length }, (_, index) => (
+        <button
+          type='button'
+          onClick={() => setActiveSlide(index)}
           key={index}
           className={`rounded-full h-6 transition-width ${
-            index + 1 === activeSlide ? 'bg-primary-600 w-24' : 'bg-zinc-300 w-6'
+            index === activeSlide ? 'bg-primary-600 w-24' : 'bg-zinc-300 w-6'
           }`}
         />
       ));

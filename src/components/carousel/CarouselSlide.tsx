@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { FC, Context, useContext } from 'react';
+import { CarouselContextValues } from './Carousel';
 
-const CarouselSlide = () => {
+interface Props {
+    isActive: boolean;
+    content:any;
+}
+
+const CarouselSlide:FC<Props> = ({isActive, content}) => {
+    
+
   return (
-    <div className='bg-primary-400 rounded-2xl h-52 w-40 flex place-items-center'
-    ><p className='m-auto'>CarouselSlide</p></div>
+    <div className=
+    {`slide ${isActive ? 'bg-purple-500' : 'bg-primary-400'} rounded-2xl h-52 w-40 flex place-items-center`}
+    ><p className='m-auto'>{content}</p></div>
   )
 }
 
