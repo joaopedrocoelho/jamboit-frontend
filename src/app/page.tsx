@@ -8,11 +8,8 @@ import TutorialCarousel from "./login/TutorialCarousel";
 
 
 export default function Home() {
-  const { data, error, isLoading, refetch } = useAuthenticateQuery();
+/*   const { data, error, isLoading, refetch } = useAuthenticateQuery();
   
-  useEffect(() => {
-    console.log('isloading', isLoading)
-  }, [isLoading])
   
   
  
@@ -23,7 +20,7 @@ export default function Home() {
     )
     //navigate to the redirect url
     window.location.href = redirect
-   }
+   } */
  
 
   return (
