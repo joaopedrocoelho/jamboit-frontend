@@ -2,7 +2,8 @@ import { Reducer} from "react";
 
 export interface CarouselState {
     trend: 'increasing' | 'decreasing' | 'none',
-    active: number
+    active: number,
+    previous: number
   };
 
   export enum CarouselActionKind {
@@ -19,7 +20,8 @@ export interface CarouselState {
   
   export const initialState:CarouselState = {
     trend: 'none',
-    active: 0
+    active: 0,
+    previous: 0
   }
 
   export type CarouselReducer = Reducer<CarouselState,CarouselAction>;
@@ -29,17 +31,23 @@ export const carouselReducer:CarouselReducer = (state, action) => {
     
     switch (type) {
      case "next":
-        console.log('next', state)
         return {
           trend: 'increasing',
-          active: state.active + 1
+          active: state.active + 1,
+          previous: state.active
         };
       case "prev":
-        console.log('prev', state)
         return {
           trend: 'decreasing',
-          active: state.active - 1
+          active: state.active - 1,
+          previous: state.active
         };
+      case "jump":
+        return {
+            trend: state.active > payload ? 'decreasing' : 'increasing',
+            active: payload,
+            previous: state.active
+        }
       default:
         return state;
     }
