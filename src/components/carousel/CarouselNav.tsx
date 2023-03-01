@@ -1,21 +1,23 @@
 import { FC, useContext, Context } from "react";
 import { CarouselContextValues } from "./Carousel";
+import { CarouselActionKind } from "./CarouselReducer";
 
 interface Props {
   context: Context<CarouselContextValues>;
 }
 
 const CarouselNav: FC<Props> = ({ context }) => {
-  const { slides, activeSlide, setActiveSlide } = useContext(context);
+  const { slides, state, dispatch } = useContext(context);
 
-  const isLeftEnabled = activeSlide !== 0;
-  const isRightEnabled = activeSlide !== slides.length - 1;
+
+  const isLeftEnabled = state.active !== 0;
+  const isRightEnabled = state.active !== slides.length - 1;
 
   return (
     <div className="flex gap-6">
       <button
       onClick={() =>  {
-       isLeftEnabled && setActiveSlide(activeSlide - 1);
+       isLeftEnabled && dispatch({type: CarouselActionKind.PREV , payload: state.active - 1});
 
       }}
         className={`rounded-full w-20 h-20 ${
@@ -26,7 +28,7 @@ const CarouselNav: FC<Props> = ({ context }) => {
       </button>
       <button
       onClick={() => {
-        isRightEnabled && setActiveSlide(activeSlide + 1);
+        isRightEnabled && dispatch({type: CarouselActionKind.NEXT, payload: 0});
       }}
         className={`rounded-full w-20 h-20 ${
           isRightEnabled
