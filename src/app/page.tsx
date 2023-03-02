@@ -1,8 +1,6 @@
 'use client'
-import { useEffect } from "react";
-import { useAuthenticateQuery } from "@/store";
-import { TutorialCarouselContext } from "./login/TutorialCarouselContext";
-import TutorialCarousel from "./login/TutorialCarousel";
+
+import Login from "./login/page";
 
 
 
@@ -24,8 +22,6 @@ export default function Home() {
  
 
   return (
-  <>
-  <TutorialCarousel />
-  </>)
+  <Login />)
 }
 
