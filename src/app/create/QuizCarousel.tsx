@@ -1,9 +1,9 @@
 import Carousel from "@/components/carousel/Carousel";
 import React, { useState, useReducer } from "react";
-import { TutorialCarouselContext } from "./TutorialCarouselContext";
+import { QuizCarouselContext } from "./QuizCarouselContext";
 import { carouselReducer } from "../../components/carousel/CarouselReducer";
 
-const TutorialCarousel = () => {
+const QuizCarousel = () => {
   const slides = Array.from({ length: 6 }, (_, index) => ({
     data: `Slide ${index + 1}`,
   }));
@@ -14,16 +14,16 @@ const TutorialCarousel = () => {
   });
 
   return (
-    <TutorialCarouselContext.Provider
+    <QuizCarouselContext.Provider
       value={{
         slides: slides,
         state: state,
         dispatch: dispatch,
       }}
     >
-      <Carousel context={TutorialCarouselContext} />
-    </TutorialCarouselContext.Provider>
+      <Carousel context={QuizCarouselContext} />
+    </QuizCarouselContext.Provider>
   );
 };
 
-export default TutorialCarousel;
+export default QuizCarousel;

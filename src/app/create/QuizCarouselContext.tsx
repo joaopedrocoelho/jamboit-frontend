@@ -2,8 +2,8 @@
 import { CarouselContextValues } from "@/components/carousel/Carousel";
 import { createContext } from "react";
 
-export const TutorialCarouselContext = createContext<CarouselContextValues>({
+export const QuizCarouselContext = createContext<CarouselContextValues>({
     slides: [],
-    activeSlide: 0,
-    setActiveSlide: (slide: number) => {},
-    });
+    state: {trend: "none", active: 0, previous: 0},
+    dispatch: () => { }
+});

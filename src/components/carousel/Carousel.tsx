@@ -111,7 +111,7 @@ const initTranslate = () => {
   }
 
   return (
-    <div className="flex flex-col items-center w-3/5">
+    <div className="flex flex-col items-center w-full">
       <div 
       ref={wrapperRef}
       className="w-full overflow-hidden carousel-container">

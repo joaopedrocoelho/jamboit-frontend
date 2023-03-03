@@ -1,27 +1,31 @@
 'use client'
-
+import { useEffect } from 'react'
 import Login from "./login/page";
-
-
+import Create from "./create/page";
+import { useAuthenticateQuery } from "../store/api/userApi";
+import Spinner from 'public/spinner.svg'
 
 
 export default function Home() {
-/*   const { data, error, isLoading, refetch } = useAuthenticateQuery();
-  
-  
-  
- 
+  const { data , error , isLoading} = useAuthenticateQuery();
 
-  const handleLogin = async () => {
-    const redirect = await fetch('http://localhost:3000/api/login').then(
-       (res) => res.text()
-    )
-    //navigate to the redirect url
-    window.location.href = redirect
-   } */
- 
+  useEffect(() => {
+    console.log('data', data)
+  
+  }, [data])
+  
+
+  if(isLoading) return 
+  (<div>
+    <Spinner />
+    </div>)
+
+  if(!data || data.status == "not logged") return ( //also handle errors here
+    <Login />
+  )
 
   return (
-  <Login />)
+  <Create />
+  )
 }
 

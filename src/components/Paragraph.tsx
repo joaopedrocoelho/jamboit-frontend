@@ -6,7 +6,7 @@ interface Props {
 
 const Paragraph:FC<Props> = ({text}) => {
   return (
-    <p className="text-xl font-normal text-primary-1000">{text}</p>
+    <p className="text-xl font-normal text-primary-1000 my-4">{text}</p>
   )
 }
 

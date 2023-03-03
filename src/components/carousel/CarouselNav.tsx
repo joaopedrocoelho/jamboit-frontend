@@ -1,6 +1,7 @@
 import { FC, useContext, Context } from "react";
 import { CarouselContextValues } from "./Carousel";
 import { CarouselActionKind } from "./CarouselReducer";
+import Caret from "public/caret.svg"
 
 interface Props {
   context: Context<CarouselContextValues>;
@@ -24,7 +25,7 @@ const CarouselNav: FC<Props> = ({ context }) => {
           isLeftEnabled ? "bg-primary-600" : "bg-zinc-300"
         }`}
       >
-        &#9664;
+        <Caret className="w-10 h-10 fill-primary-900 rotate-180 m-auto -translate-x-1"/>
       </button>
       <button
       onClick={() => {
@@ -36,7 +37,7 @@ const CarouselNav: FC<Props> = ({ context }) => {
             : "bg-zinc-300"
         }`}
       >
-        &#9654;
+        <Caret className="w-10 h-10 fill-primary-900 m-auto translate-x-1"/>
       </button>
     </div>
   );
