@@ -2,15 +2,20 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { userApi } from "./api/userApi";
 import { useDispatch } from "react-redux";
+import { userQuiz } from "./api/userQuiz";
 
 
 
 export const store = configureStore({
     reducer: {
-            [userApi.reducerPath]: userApi.reducer
+            [userApi.reducerPath]: userApi.reducer,
+            [userQuiz.reducerPath]: userQuiz.reducer
     },
     middleware: (getDefaultMiddleware) => {
-        return getDefaultMiddleware().concat(userApi.middleware);
+        return getDefaultMiddleware()
+        .concat(
+            userApi.middleware,
+            userQuiz.middleware);
     }
 });
 

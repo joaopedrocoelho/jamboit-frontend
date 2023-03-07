@@ -5,6 +5,7 @@ import React, {
   useRef,
   useEffect,
   useState,
+  Ref,
 } from "react";
 import CarouselNav from "./CarouselNav";
 import CarouselPagination from "./CarouselPagination";
@@ -14,15 +15,23 @@ import { CarouselState, CarouselAction, CarouselActionKind } from "./CarouselRed
 import { useSwipeable } from "react-swipeable";
 
 export interface CarouselContextValues {
-  slides: any[];
+  slides: Record<string,any>[];
   state: CarouselState;
   dispatch: React.Dispatch<CarouselAction>;
 }
 interface Props {
   context: Context<CarouselContextValues>;
+  SlideComponent: FC<SlideProps>;
 }
 
-const Carousel: FC<Props> = ({ context }) => {
+export interface SlideProps {
+  isActive: boolean;
+    children: React.ReactNode;
+    onClick: () => void;
+    ref: Ref<any>;
+}
+
+const Carousel: FC<Props> = ({ context, SlideComponent }) => {
   const { slides, state, dispatch } = useContext(context);
   const [translate, setTranslate] = useState(0);
   const [hasInit, sethasInit] = useState(false);
@@ -120,13 +129,13 @@ const initTranslate = () => {
         {...handlers} ref={refPassthrough}
         >
           {slides.map((slide, index) => (
-            <CarouselSlide
+            <SlideComponent
               ref={(el) => {
                 if (el) {
                   return (slideRefs.current[index] = el);
                 }
               }}
-              content={slide.data}
+              children={slide}
               isActive={state.active === index}
               key={`slide-${index}`}
               onClick={() => dispatch({ type: CarouselActionKind.JUMP, payload: index })}

@@ -9,10 +9,6 @@ import Spinner from 'public/spinner.svg'
 export default function Home() {
   const { data , error , isLoading} = useAuthenticateQuery();
 
-  useEffect(() => {
-    console.log('data', data)
-  
-  }, [data])
   
 
   if(isLoading) return 

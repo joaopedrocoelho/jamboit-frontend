@@ -17,7 +17,7 @@ export const userApi = createApi({
               status: response.status,
               message: response.message,
               error: response.error,
-              data: data,
+              ...data,
             };
           },
           
