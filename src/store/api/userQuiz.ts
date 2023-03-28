@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { forms_v1 } from "googleapis";
 
 export const userQuiz = createApi({
     reducerPath: "quiz",
@@ -8,7 +9,7 @@ export const userQuiz = createApi({
     tagTypes: ["Quiz"],
     endpoints(builder) {
       return {
-        quizzes: builder.query<Record<string,any> | null, void>({
+        quizzes: builder.query<forms_v1.Schema$Form[]| null, void>({
           query: () => "/api/quizzes",
           providesTags:["Quiz"],
         })

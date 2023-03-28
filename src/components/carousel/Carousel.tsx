@@ -6,6 +6,8 @@ import React, {
   useEffect,
   useState,
   Ref,
+  ReactElement,
+  PropsWithChildren,
 } from "react";
 import CarouselNav from "./CarouselNav";
 import CarouselPagination from "./CarouselPagination";
@@ -15,20 +17,19 @@ import { CarouselState, CarouselAction, CarouselActionKind } from "./CarouselRed
 import { useSwipeable } from "react-swipeable";
 
 export interface CarouselContextValues {
-  slides: Record<string,any>[];
+  slides: JSX.Element[];
   state: CarouselState;
   dispatch: React.Dispatch<CarouselAction>;
 }
 interface Props {
   context: Context<CarouselContextValues>;
-  SlideComponent: FC<SlideProps>;
+  SlideComponent: FC<PropsWithChildren<SlideProps>>;
 }
 
 export interface SlideProps {
-  isActive: boolean;
-    children: React.ReactNode;
+    isActive?: boolean;
     onClick: () => void;
-    ref: Ref<any>;
+    ref?: Ref<any>;
 }
 
 const Carousel: FC<Props> = ({ context, SlideComponent }) => {
@@ -135,11 +136,12 @@ const initTranslate = () => {
                   return (slideRefs.current[index] = el);
                 }
               }}
-              children={slide}
               isActive={state.active === index}
               key={`slide-${index}`}
               onClick={() => dispatch({ type: CarouselActionKind.JUMP, payload: index })}
-            />
+            >
+              {slide}
+              </SlideComponent>
           ))}
         </div>
       </div>

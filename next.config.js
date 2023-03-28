@@ -19,6 +19,9 @@ const nextConfig = {
         icon:true,
         typescript: true,
         dimensions: false,
+        replaceAttrValues: {
+          '#000': 'currentColor',
+        },
       }}],
     })
 
