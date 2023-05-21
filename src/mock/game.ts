@@ -1,4 +1,4 @@
-const mockGame = {
+export const mockGame = {
   id: "chinese-history-quiz",
   name: "Chinese History Quiz",
   questions: [
