@@ -17,15 +17,12 @@ function getRandomRGB(): string {
 
 const AnswersMosaic = ({ answers }: Props) => {
   return (
-    <div
-      className="flex w-full h-full flex-wrap
-  "
-    >
-      {answers.map((answer) => (
+    <div className="flex w-full flex-wrap">
+      {answers.map((answer, idx) => (
         <div
-          className="flex w-1/2 shrink-0 grow h-full text-lg"
+          className="flex w-1/2  grow text-lg items-center justify-center"
           style={{
-            backgroundColor: getRandomRGB(),
+            backgroundColor: `rgba(0,0, 255, ${idx / answers.length})`,
           }}
           key={answer.id}
         >

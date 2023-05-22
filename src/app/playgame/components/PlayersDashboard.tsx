@@ -8,13 +8,14 @@ interface Props {
 
 const PlayersDashboard = ({ players }: Props) => {
   return (
-    <div className="flex flex-col gap-y-5">
-      <h1>Players Dashboard</h1>
+    <div className="flex flex-col gap-y-5 p-10">
       {players.map((player) => (
         <ul key={player.id} className="flex gap-x-2">
           <li>
             <Image
-              src={"img/avatar.png"}
+              src={"/img/avatar.png"}
+              width={50}
+              height={80}
               alt={`${player.displayName}'s Avatar`}
             />
           </li>

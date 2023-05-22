@@ -10,7 +10,7 @@ import { QuizCarouselContext } from "./QuizCarouselContext";
 import { carouselReducer } from "../../../components/carousel/CarouselReducer";
 import { useQuizzesQuery } from "@/store/api/userQuiz";
 import QuizCarouselSlide from "./QuizCarouselSlide";
-import Spinner from 'public/spinner.svg'
+import Spinner from "public/spinner.svg";
 
 const QuizCarousel = () => {
   const { data, error, isLoading } = useQuizzesQuery();
@@ -38,8 +38,8 @@ const QuizCarousel = () => {
   if (true) {
     return (
       <div className=" w-3/5">
-       {/*  <p>Loading...</p> */}
-        <Spinner currentColor={'#FF0000'}/>
+        {/*  <p>Loading...</p> */}
+        <Spinner currentColor={"#FF0000"} />
       </div>
     );
   }
