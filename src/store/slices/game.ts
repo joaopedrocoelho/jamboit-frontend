@@ -3,11 +3,11 @@ import { Game } from "@/models/game";
 
 export interface GameRootState {
   game: Game | null;
-  activeQuestion: number;
+  activeQuestionIdx: number;
 }
 const initialState: GameRootState = {
   game: null,
-  activeQuestion: 0,
+  activeQuestionIdx: 0,
 };
 
 export const activeGameSlice = createSlice({
@@ -21,7 +21,7 @@ export const activeGameSlice = createSlice({
           name: action.payload.name,
           questions: action.payload.questions,
         },
-        activeQuestion: 0,
+        activeQuestionIdx: 0,
       };
     },
     setActiveQuestion: (state, action: PayloadAction<number>) => {
@@ -32,5 +32,6 @@ export const activeGameSlice = createSlice({
 
 export const { setGame, setActiveQuestion } = activeGameSlice.actions;
 export const activeGameReducer = activeGameSlice.reducer;
-export const selectGame = (state: { activeGame: GameRootState }) =>
-  state.activeGame;
+export const selectGame = (state: { activeGame: GameRootState }) => state.game;
+export const selectActiveQuestion = (state: { activeGame: GameRootState }) =>
+  state.activeGame.game?.questions[state.activeGame.activeQuestionIdx];

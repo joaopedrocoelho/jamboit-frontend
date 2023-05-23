@@ -4,12 +4,14 @@ import { userApi } from "./api/userApi";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { userQuiz } from "./api/userQuiz";
 import { activeGameReducer } from "./slices/game";
+import { playersReducer } from "./slices/players";
 
 export const store = configureStore({
   reducer: {
     [userApi.reducerPath]: userApi.reducer,
     [userQuiz.reducerPath]: userQuiz.reducer,
     activeGame: activeGameReducer,
+    players: playersReducer,
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware().concat(
