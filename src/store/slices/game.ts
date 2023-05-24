@@ -25,7 +25,7 @@ export const activeGameSlice = createSlice({
       };
     },
     setActiveQuestion: (state, action: PayloadAction<number>) => {
-      return { ...state, activeQuestion: action.payload };
+      return { ...state, activeQuestionIdx: action.payload };
     },
   },
 });
@@ -36,3 +36,5 @@ export const selectGame = (state: { activeGame: GameRootState }) =>
   state.activeGame;
 export const selectActiveQuestion = (state: { activeGame: GameRootState }) =>
   state.activeGame.game?.questions[state.activeGame.activeQuestionIdx];
+export const selectActiveQuestionIdx = (state: { activeGame: GameRootState }) =>
+  state.activeGame.activeQuestionIdx;

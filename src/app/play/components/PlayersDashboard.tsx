@@ -4,12 +4,11 @@ import Image from "next/image";
 
 interface Props {
   players: Player[];
-  activePlayer: number;
 }
 
-const PlayersDashboard = ({ players, activePlayer }: Props) => {
+const PlayersDashboard = ({ players }: Props) => {
   return (
-    <div className="flex flex-col gap-y-5 p-10">
+    <div className="flex gap-x-5 p-10">
       {players.map((player, index) => (
         <ul key={player.id} className="flex gap-x-2">
           <li>
@@ -20,9 +19,7 @@ const PlayersDashboard = ({ players, activePlayer }: Props) => {
               alt={`${player.displayName}'s Avatar`}
             />
           </li>
-          <li className={`${activePlayer === index && "font-bold"}`}>
-            {player.displayName}
-          </li>
+          <li className={``}>{player.displayName}</li>
           <li>{player.score}</li>
         </ul>
       ))}

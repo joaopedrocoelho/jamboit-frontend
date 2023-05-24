@@ -1,11 +1,18 @@
 import { Answer } from "@/models/game";
 import { useAppDispatch, useAppSelector } from "@/store";
-import { selectActiveQuestion } from "@/store/slices/game";
+import {
+  selectActiveQuestion,
+  selectActiveQuestionIdx,
+  selectGame,
+  setActiveQuestion,
+} from "@/store/slices/game";
 import {
   selectActivePlayer,
   selectPlayers,
+  setActivePlayer,
   updateScore,
 } from "@/store/slices/players";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 interface Props {
@@ -23,23 +30,32 @@ function getRandomRGB(): string {
 }
 
 const AnswersMosaic = ({ answers }: Props) => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
-  const { activePlayerIdx, players } = useAppSelector(selectPlayers);
+  const { game } = useAppSelector(selectGame);
   const activeQuestion = useAppSelector(selectActiveQuestion);
-  const activePlayer = useAppSelector(selectActivePlayer);
+  const activeQuestionIdx = useAppSelector(selectActiveQuestionIdx);
 
   return (
     <div className="flex w-full flex-wrap">
       {answers.map((answer, idx) => (
         <button
-          className="flex w-1/2  grow text-lg items-center justify-center cursor-pointer"
+          className="flex w-1/2  grow text-2xl  items-center justify-center cursor-pointer"
           style={{
             backgroundColor: `rgba(0,0, 255, ${idx / answers.length})`,
           }}
           key={answer.id}
           onClick={() => {
+            //THIS is all backend code actually
+            //TODO: add bonus for faster players
+            //TODO: add numeric keypad input
             const score = activeQuestion?.correctAnswer === answer.id ? 5 : 0;
-            dispatch(updateScore({ id: activePlayer.id, score }));
+            // dispatch(updateScore({ id: activePlayer.id, score }));
+            // if (game!.questions.length >= activeQuestionIdx + 1) {
+            //   dispatch(setActiveQuestion(activeQuestionIdx + 1));
+            // } else {
+            //   router.push("/score");
+            // }
           }}
         >
           {answer.answer}

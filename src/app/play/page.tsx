@@ -7,11 +7,12 @@ import { mockGame } from "@/mock/game";
 import PlayersDashboard from "./components/PlayersDashboard";
 import Timer from "./components/Timer";
 import { selectPlayers, setPlayers } from "@/store/slices/players";
+import QuestionHeader from "./components/QuestionHeader";
 
 const PlayGamePage = () => {
   const dispatch = useAppDispatch();
   const { game, activeQuestionIdx } = useAppSelector(selectGame);
-  const { players, activePlayerIdx } = useAppSelector(selectPlayers);
+  const { players } = useAppSelector(selectPlayers);
 
   useEffect(() => {
     dispatch(
@@ -41,12 +42,13 @@ const PlayGamePage = () => {
 
   if (game && players)
     return (
-      <div className="flex h-full">
+      <div className="flex flex-col h-full">
         <Timer />
+        <QuestionHeader question={game.questions[activeQuestionIdx].question} />
         <div className="flex w-full h-full">
           <AnswersMosaic answers={game.questions[activeQuestionIdx].answers} />
         </div>
-        <PlayersDashboard players={players} activePlayer={activePlayerIdx} />
+        <PlayersDashboard players={players} />
       </div>
     );
 
