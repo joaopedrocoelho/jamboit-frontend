@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import Login from "./(nongame)/login/page";
-import Create from "./create/page";
+import Create from "./(nongame)/create/page";
 import { useAuthenticateQuery } from "../store/api/userApi";
 import Spinner from "public/spinner.svg";
 

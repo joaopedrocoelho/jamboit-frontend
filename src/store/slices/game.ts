@@ -32,6 +32,7 @@ export const activeGameSlice = createSlice({
 
 export const { setGame, setActiveQuestion } = activeGameSlice.actions;
 export const activeGameReducer = activeGameSlice.reducer;
-export const selectGame = (state: { activeGame: GameRootState }) => state.game;
+export const selectGame = (state: { activeGame: GameRootState }) =>
+  state.activeGame;
 export const selectActiveQuestion = (state: { activeGame: GameRootState }) =>
   state.activeGame.game?.questions[state.activeGame.activeQuestionIdx];

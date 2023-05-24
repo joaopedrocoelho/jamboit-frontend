@@ -10,8 +10,8 @@ import { selectPlayers, setPlayers } from "@/store/slices/players";
 
 const PlayGamePage = () => {
   const dispatch = useAppDispatch();
-  const { game, activeQuestion } = useAppSelector(selectGame);
-  const { players, activePlayer } = useAppSelector(selectPlayers);
+  const { game, activeQuestionIdx } = useAppSelector(selectGame);
+  const { players, activePlayerIdx } = useAppSelector(selectPlayers);
 
   useEffect(() => {
     dispatch(
@@ -44,9 +44,9 @@ const PlayGamePage = () => {
       <div className="flex h-full">
         <Timer />
         <div className="flex w-full h-full">
-          <AnswersMosaic answers={game.questions[activeQuestion].answers} />
+          <AnswersMosaic answers={game.questions[activeQuestionIdx].answers} />
         </div>
-        <PlayersDashboard players={players} activePlayer={activePlayer} />
+        <PlayersDashboard players={players} activePlayer={activePlayerIdx} />
       </div>
     );
 

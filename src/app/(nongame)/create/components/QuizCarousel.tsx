@@ -7,7 +7,7 @@ import React, {
   PropsWithChildren,
 } from "react";
 import { QuizCarouselContext } from "./QuizCarouselContext";
-import { carouselReducer } from "../../../components/carousel/CarouselReducer";
+import { carouselReducer } from "../../../../components/carousel/CarouselReducer";
 import { useQuizzesQuery } from "@/store/api/userQuiz";
 import QuizCarouselSlide from "./QuizCarouselSlide";
 import Spinner from "public/spinner.svg";
